@@ -1,8 +1,3 @@
-Here is a modern, clean GitHub README version (minimal, well spaced, startup-style). It looks much more professional and modern on GitHub compared to long text blocks.
-
-You can paste this directly into README.md.
-
-⸻
 
 🚀 AI-Based Personalized Learning Platform
 
