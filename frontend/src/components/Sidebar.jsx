@@ -11,7 +11,8 @@ export default function Sidebar({ onLogout }) {
         if (!token) return;
 
         // Fetch user info
-        fetch('http://localhost:5000/api/auth/me', {
+        const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+        fetch(`${baseUrl}/api/auth/me`, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         .then(res => res.json())
@@ -19,7 +20,7 @@ export default function Sidebar({ onLogout }) {
         .catch(err => console.error(err));
 
         // Fetch dashboard to get topics count
-        fetch('http://localhost:5000/api/learning/dashboard', {
+        fetch(`${baseUrl}/api/learning/dashboard`, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         .then(res => res.json())

@@ -13,7 +13,8 @@ export default function AuthPage({ onLogin }) {
         setLoading(true);
         try {
             // Direct API call
-            const url = `http://localhost:5000/api/auth/${isLogin ? 'login' : 'signup'}`;
+            const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+            const url = `${baseUrl}/api/auth/${isLogin ? 'login' : 'signup'}`;
             const payload = isLogin ? { username: email, password } : { name, email, password };
 
             const config = {

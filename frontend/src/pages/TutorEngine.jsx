@@ -29,7 +29,8 @@ export default function TutorEngine() {
         if (e) e.preventDefault();
         setLoading(true);
         try {
-            const res = await fetch('http://localhost:5000/api/learning/generate', {
+            const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+            const res = await fetch(`${baseUrl}/api/learning/generate`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -85,7 +86,8 @@ export default function TutorEngine() {
         setQuizSubmitted(true);
 
         try {
-            await fetch('http://localhost:5000/api/learning/submit-quiz', {
+            const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+            await fetch(`${baseUrl}/api/learning/submit-quiz`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

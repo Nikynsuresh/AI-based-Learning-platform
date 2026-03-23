@@ -10,7 +10,8 @@ export default function Dashboard() {
 
     const fetchData = () => {
         setLoading(true);
-        fetch('http://localhost:5000/api/learning/dashboard', {
+        const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+        fetch(`${baseUrl}/api/learning/dashboard`, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         })
             .then(res => {
@@ -42,7 +43,8 @@ export default function Dashboard() {
         if (!window.confirm(`Are you sure you want to delete all progress for "${topicTitle}"?`)) return;
 
         try {
-            await fetch(`http://localhost:5000/api/learning/delete-topic?topic=${encodeURIComponent(topicTitle)}`, {
+            const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+            await fetch(`${baseUrl}/api/learning/delete-topic?topic=${encodeURIComponent(topicTitle)}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
@@ -64,7 +66,8 @@ export default function Dashboard() {
         setLoadingRecommendations(true);
         setRecommendationChoices([]);
         try {
-            const res = await fetch(`http://localhost:5000/api/learning/recommendations?topic=${encodeURIComponent(topic)}`, {
+            const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+            const res = await fetch(`${baseUrl}/api/learning/recommendations?topic=${encodeURIComponent(topic)}`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
             const data = await res.json();
