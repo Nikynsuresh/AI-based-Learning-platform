@@ -17,7 +17,7 @@ export default function LearningPage() {
             return;
         }
 
-        fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/learning/resources?topic=${encodeURIComponent(topic)}`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000')}/api/learning/resources?topic=${encodeURIComponent(topic)}`, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         })
         .then(res => {
